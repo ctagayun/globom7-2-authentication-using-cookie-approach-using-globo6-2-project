@@ -2,7 +2,7 @@ using Api.Migrations;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using MiniValidation;
-
+using Microsoft.AspNetCore.Authentication.Cookies;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
@@ -10,6 +10,21 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors();
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+    .AddCookie(o => 
+    {
+        o.Cookie.Name = "__Host-spa";
+        o.Cookie.SameSite = SameSiteMode.Strict;
+        o.Events.OnRedirectToLogin = (context) =>
+        {
+            context.Response.StatusCode = StatusCodes.Status401Unauthorized;
+            return Task.CompletedTask;
+        };
+    });
+builder.Services.AddAuthorization(o => 
+    o.AddPolicy("admin", p => p.RequireClaim("role", "Admin"))
+);
 
 //add the HouseDbContext to the dependency injection container
 //I will be registering it with a scope of "Scope" which means a new instance
@@ -44,6 +59,8 @@ app.UseAuthentication();
 app.UseHttpsRedirection();
 app.MapHouseEndpoints();
 app.MapBidEndpoints();
+app.UseRouting();
+app.UseAuthorization();
 app.MapFallbackToFile("index.html"); //*index.html is the entrypoint of out React application
   //*if no endpoint match we tell it to fall back to index.html 
   //*we defined endpoints for Swagger (app.UseSwaggerUI) and 

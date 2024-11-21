@@ -2337,3 +2337,4 @@ C:\_AMyReactDev\chito-guijt-course-building-e2e-react-app-webapi-using-netcore8\
 C:\_AMyReactDev\chito-guijt-course-building-e2e-react-app-webapi-using-netcore8\globom7-2-authentication-using-cookie-approach-using-globo6-2-project\Api\obj\Debug\net8.0\Api.genruntimeconfig.cache
 C:\_AMyReactDev\chito-guijt-course-building-e2e-react-app-webapi-using-netcore8\globom7-2-authentication-using-cookie-approach-using-globo6-2-project\Api\obj\Debug\net8.0\ref\Api.dll
 C:\_AMyReactDev\chito-guijt-course-building-e2e-react-app-webapi-using-netcore8\globom7-2-authentication-using-cookie-approach-using-globo6-2-project\Api\bin\Debug\net8.0\Api.staticwebassets.runtime.json
+C:\_AMyReactDev\chito-guijt-course-building-e2e-react-app-webapi-using-netcore8\globom7-2-authentication-using-cookie-approach-using-globo6-2-project\Api\obj\Debug\net8.0\Api.sourcelink.json
